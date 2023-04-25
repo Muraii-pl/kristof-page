@@ -1,0 +1,35 @@
+@import "src/app/common/core/styles/common";
+.loader {
+  &_background {
+    position: absolute;
+    background: rgba($black, .6);
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+  }
+  &_spinner {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    &:before , &:after{
+      content: '';
+      border-radius: 50%;
+      position: absolute;
+      inset: 0;
+    }
+    &:after {
+      box-shadow: 2px 2px 0 $baseColor inset;
+      animation: rotate 1s ease-in-out infinite;
+    }
+  }
+
+
+
+  @keyframes rotate {
+    0% {  transform: rotate(0)}
+    100% { transform: rotate(360deg)}
+  }
+}
+

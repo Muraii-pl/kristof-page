@@ -1,0 +1,25 @@
+<div class="page page_login">
+  <header>
+    <h1> Witaj na stronie xyz</h1>
+  </header>
+  <div class="page_login__box">
+    <form class="page_login__form" [formGroup]="loginForm" (ngSubmit)="login()">
+      <app-form-input
+      title="Nazwa użytkownika"
+      fControlName="login"
+      [fGroup]="loginForm"
+      type="string"
+      lPosition="top"
+      >
+      </app-form-input>
+      <app-form-input
+        title="Hasło"
+        fControlName="password"
+        [fGroup]="loginForm"
+        type="password"
+        lPosition="top"
+      ></app-form-input>
+      <app-primary-button label="Zaloguj się" type="submit"></app-primary-button>
+    </form>
+  </div>
+</div>

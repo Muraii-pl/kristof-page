@@ -1,0 +1,7 @@
+<aside class="aside_menu">
+  <ul class="aside_menu__list">
+    <li *ngFor="let menuItem of menuItemList" class="aside_menu__list_item">
+      <a [routerLink]="menuItem.url" class="aside_menu__list_item__link" routerLinkActive="active">{{ menuItem.name }}</a>
+    </li>
+  </ul>
+</aside>

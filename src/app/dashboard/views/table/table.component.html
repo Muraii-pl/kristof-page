@@ -1,0 +1,37 @@
+<div class="table__wrapper">
+  <div class="table__buttons">
+    <app-primary-button label="Wyeksportuj dane do PDF" type="button" size="sm"
+                        (click)="generatePDF()"></app-primary-button>
+  </div>
+  <div class="table__overflow">
+    <table class="table" #tableEl>
+      <thead class="table__header">
+      <tr class="table__header_row">
+        <td *ngFor="let header of tableHeader" class="table__header_row__data">
+          {{ header.name }}
+        </td>
+      </tr>
+      </thead>
+      <tbody class="table__body">
+      <ng-container *ngIf="tableDate; else tableLoader">
+        <ng-container *ngIf="tableDate.length">
+          <tr *ngFor="let data of tableDate" class="table__body_row">
+            <td *ngFor="let dataProperty of tableHeader" class="table__body_row__data">
+              {{ data[dataProperty.value] }}
+            </td>
+          </tr>
+        </ng-container>
+      </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<ng-template #tableLoader>
+  <tr class="table__body_row">
+    <td class="table__body_row__data" *ngFor="let dataProperty of tableHeader">
+      <div class="table__body_row__data--loading"></div>
+    </td>
+  </tr>
+</ng-template>

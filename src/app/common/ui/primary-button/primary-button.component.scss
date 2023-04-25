@@ -1,0 +1,28 @@
+@import "src/app/common/core/styles/common";
+
+.primary_button {
+  width: 100%;
+  background: $baseColor;
+  color: $white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background .3s ease-in;
+  padding: 16px;
+  cursor: pointer;
+
+  &:hover, &:focus {
+    background: $baseColorDark20;
+
+  }
+}
+
+.lg {
+  height: 48px;
+  font-size: 24px;
+}
+
+.sm {
+  height: 24px;
+  font-size: 18px;
+}

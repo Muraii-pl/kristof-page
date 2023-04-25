@@ -1,0 +1,25 @@
+@import "src/app/common/core/styles/common";
+.page {
+  &_dashboard {
+    display: flex;
+    flex-flow: row wrap;
+  }
+  &__content {
+    padding: 16px 16px 0 0;
+    display: flex;
+  }
+  &__header {
+    background: $baseColorWhite50;
+    height: 48px;
+    flex: 1 100%;
+    display: flex;
+    padding: 0 16px;
+    align-items: center;
+    justify-content: space-between;
+
+    &_title{
+      font-weight: 600;
+      font-size: 32px;
+    }
+  }
+}
