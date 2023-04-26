@@ -4,3 +4,4 @@ export * from  './INameId';
 export * from './IOrder';
 export * from './ITableHeader';
 export * from './IUser'
+export * from './ILabelIcon'
