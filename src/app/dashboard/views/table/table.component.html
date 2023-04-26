@@ -10,6 +10,10 @@
         <td *ngFor="let header of tableHeader" class="table__header_row__data">
           {{ header.name }}
         </td>
+        <td class="table__header_row__data_options">
+          Dodaj nowy element
+          <i class="pr pr-add"></i>
+        </td>
       </tr>
       </thead>
       <tbody class="table__body">
@@ -18,6 +22,10 @@
           <tr *ngFor="let data of tableDate" class="table__body_row">
             <td *ngFor="let dataProperty of tableHeader" class="table__body_row__data">
               {{ data[dataProperty.value] }}
+            </td>
+            <td class="table__body_row__data_options">
+              <i class="pr pr-edit" title="Edytuj dane"></i>
+              <i class="pr pr-delete" title="Usuń dane"></i>
             </td>
           </tr>
         </ng-container>

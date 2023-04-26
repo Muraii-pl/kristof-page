@@ -1,5 +1,6 @@
 @import "src/app/common/core/styles/common";
 
+
 .table {
   width: calc(100vw - 336px);
   //max-width: 1120px;
@@ -31,7 +32,21 @@
         &:first-child {
           padding-left: 8px;
         }
+
+        &_options {
+          text-align: right;
+          padding-right: 8px;
+          cursor: pointer;
+          &:hover {
+            color: $baseColorWhite70;
+          }
+          .pr {
+            cursor: pointer;
+            font-size: 12px;
+          }
+        }
       }
+
     }
   }
 
@@ -53,6 +68,20 @@
 
         &:first-child {
           padding-left: 8px;
+        }
+
+        &_options {
+          text-align: right;
+          padding-right: 8px;
+
+          .pr {
+            padding: 4px;
+            cursor: pointer;
+
+            &:hover {
+              color: $baseColorDark10;
+            }
+          }
         }
 
         &--loading {
