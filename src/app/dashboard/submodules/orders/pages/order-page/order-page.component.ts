@@ -14,23 +14,23 @@ export class OrderPageComponent extends GenericBasePage<IOrder> implements OnIni
   public override tableHeader: ITableHeader[] = [
     {
       name: 'Nazwa',
-      value: 'name'
+      value: 'model'
     },
     {
       name: 'Nr. Zamówienia',
-      value: 'nrOrder'
+      value: 'id'
     },
     {
       name: 'Data',
-      value: 'data',
+      value: 'accepted',
     },
     {
       name: 'Klient',
-      value: 'client',
+      value: 'clientId',
     },
     {
       name: 'Kwota Łączna ZŁ',
-      value: 'total'
+      value: 'price'
     }
   ]
 
