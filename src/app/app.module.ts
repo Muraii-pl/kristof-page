@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UiModule } from './common/ui/ui.module';
+import { StaticDependenciesService } from './common/core/services/StaticDependenciesService';
 
 @NgModule({
   declarations: [
@@ -16,9 +17,16 @@ import { UiModule } from './common/ui/ui.module';
     HttpClientModule,
     UiModule,
   ],
-  providers: [],
+  providers: [
+    StaticDependenciesService
+  ],
   exports: [
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(
+    private readonly _staticDependenciesService: StaticDependenciesService
+  ) {
+  }
+}

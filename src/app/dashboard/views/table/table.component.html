@@ -10,7 +10,12 @@
         <td *ngFor="let header of tableHeader" class="table__header_row__data">
           {{ header.name }}
         </td>
-        <td class="table__header_row__data_options">
+        <td class="table__header_row__data_options" (click)="tableAction.emit(
+        {
+          action: tableActionOptions.New,
+          id: null
+        }
+        )">
           Dodaj nowy element
           <i class="pr pr-add"></i>
         </td>
@@ -24,8 +29,18 @@
               {{ data[dataProperty.value] }}
             </td>
             <td class="table__body_row__data_options">
-              <i class="pr pr-edit" title="Edytuj dane"></i>
-              <i class="pr pr-delete" title="Usuń dane"></i>
+              <i class="pr pr-edit" title="Edytuj dane" (click)="tableAction.emit(
+              {
+                action: tableActionOptions.Edit,
+                id: data.id
+                }
+              )"></i>
+              <i class="pr pr-delete" title="Usuń dane" (click)="tableAction.emit(
+              {
+                action: tableActionOptions.Delete,
+                id: data.id
+              }
+              )"></i>
             </td>
           </tr>
         </ng-container>
@@ -43,3 +58,7 @@
     </td>
   </tr>
 </ng-template>
+
+<ng-content select="[slot='new-modal']"></ng-content>
+<ng-content select="[slot='edit-modal']"></ng-content>
+<ng-content select="[slot='delete-modal']"></ng-content>

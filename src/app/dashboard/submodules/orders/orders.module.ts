@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { OrdersRoutingModule } from './orders-routing.module';
 import { OrderPageComponent } from './pages/order-page/order-page.component';
 import { ViewsModule } from '../../views/views.module';
+import { UiModule } from '../../../common/ui/ui.module';
+import { ModalsModule } from '../../modals/modals.module';
 
 
 @NgModule({
@@ -13,7 +15,9 @@ import { ViewsModule } from '../../views/views.module';
   imports: [
     CommonModule,
     OrdersRoutingModule,
-    ViewsModule
+    ViewsModule,
+    UiModule,
+    ModalsModule
 
   ]
 })

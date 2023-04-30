@@ -3,12 +3,15 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
   ViewChild
 } from '@angular/core';
-import { ITableHeader } from '../../core/interfaces/ITableHeader';
+import { ITableHeader,ITableAction } from '../../core/interfaces/';
 import { ToPDFService } from '../../../common/core/services/toPDFService';
+import { TableActionsEnum } from '../../core/enums';
 
 @Component({
   selector: 'app-table',
@@ -20,14 +23,17 @@ export class TableComponent implements OnInit {
 
   @ViewChild('tableEl', { static: false }) tableElRef: ElementRef
 
-
   @Input() set tableHeader(tableHeader: ITableHeader[]) {
     this._tableHeader = tableHeader
   }
 
   @Input() set tableData(tableData: unknown[]) {
-    this._tableData = tableData
+    this._tableData = tableData;
   }
+
+  @Output() tableAction: EventEmitter<ITableAction> = new EventEmitter<ITableAction>()
+
+  public tableActionOptions = TableActionsEnum
 
   private _tableHeader: ITableHeader[];
   private _tableData: any[];
@@ -50,6 +56,8 @@ export class TableComponent implements OnInit {
   }
 
   public generatePDF(): void {
-    this._toPDFService.downloadPDF(this.tableHeader, this.tableDate)
+    this._toPDFService.downloadPDF(this.tableHeader, this.tableDate);
   }
+
+  protected readonly TableActionsEnum = TableActionsEnum;
 }

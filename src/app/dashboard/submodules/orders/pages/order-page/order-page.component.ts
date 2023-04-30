@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { ITableHeader, IOrder } from '../../../../core/interfaces/';
 import { GenericBasePage } from '../../../../pages/generic-base-page/generic-base-page';
 import { OrdersService } from '../../../../core/services/';
+import { ModalService } from '../../../../../common/core/services/ModalService';
+import { StaticDependenciesService } from '../../../../../common/core/services/StaticDependenciesService';
 
 @Component({
   selector: 'app-order-page',
@@ -36,13 +38,19 @@ export class OrderPageComponent extends GenericBasePage<IOrder> implements OnIni
 
   constructor(
     protected override readonly cdr: ChangeDetectorRef,
-    protected override readonly pageService: OrdersService
+    protected override readonly pageService: OrdersService,
+    private readonly _modalService: ModalService
   ) {
     super(cdr, pageService)
   }
 
   public override ngOnInit(): void {
     super.ngOnInit();
+  }
+
+  public test(): void {
+    console.log('test')
+    this._modalService.open('confirmationDialog')
   }
 
 }

@@ -1,0 +1,13 @@
+<div class="modal modal__backdrop" *ngIf="isOpen$ | async">
+  <div class="modal__wrapper">
+    <div class="modal__header">
+      <div class="modal__header__title">
+        {{ title }}
+      </div>
+      <button class="modal__header__button" (click)="close()"> X </button>
+    </div>
+    <div class="modal__content">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

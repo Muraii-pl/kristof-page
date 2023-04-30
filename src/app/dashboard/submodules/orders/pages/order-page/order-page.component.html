@@ -1,4 +1,22 @@
 <app-table
   [tableHeader]="tableHeader"
   [tableData]="tableData"
-></app-table>
+>
+
+  <ng-container slot="delete-modal">
+    <div>delete</div>
+  </ng-container>
+  <ng-container slot="new-modal">
+    <div>new</div>
+  </ng-container>
+  <ng-container slot="edit-modal">
+    <div>edit</div>
+  </ng-container>
+</app-table>
+
+<button (click)="test()"> test open modal</button>
+
+<app-confirmation-modal
+  [title]="''"
+  [name]="'confirmationDialog'"
+></app-confirmation-modal>

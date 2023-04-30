@@ -4,6 +4,7 @@ import { FormInputComponent } from './form-input/form-input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimaryButtonComponent } from './primary-button/primary-button.component';
 import { LoaderComponent } from './loader/loader.component';
+import { BaseModalComponent } from './base-modal/base-modal.component';
 
 
 
@@ -12,6 +13,7 @@ import { LoaderComponent } from './loader/loader.component';
     FormInputComponent,
     PrimaryButtonComponent,
     LoaderComponent,
+    BaseModalComponent,
 
   ],
   imports: [
@@ -22,7 +24,8 @@ import { LoaderComponent } from './loader/loader.component';
   exports: [
     FormInputComponent,
     PrimaryButtonComponent,
-    LoaderComponent
+    LoaderComponent,
+    BaseModalComponent
   ]
 })
 export class UiModule { }
