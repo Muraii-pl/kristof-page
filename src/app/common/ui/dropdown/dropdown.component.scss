@@ -1,0 +1,54 @@
+@import "src/app/common/core/styles/common";
+
+.dropdown {
+  width: 200px;
+  height: 28px;
+  position: relative;
+  border: 1px solid $baseColorDark10;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &__value {
+    width: 100%;
+    padding: 4px;
+    display: flex;
+    justify-content: space-between;
+
+    &_text {
+      width: 100%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+
+    }
+
+    .pr-angle {
+      transition: transform .3s ease-in-out;
+
+      &--open {
+        transform: rotateX(180deg);
+      }
+    }
+  }
+
+  &__list {
+    &_wrapper {
+      position: absolute;
+      width: 199px;
+      top: 26px;
+      left: 0;
+      background: $baseColorWhite90;
+      padding: 4px;
+      border: 1px solid $baseColorDark20;
+
+      &--open {
+        display: block;
+      }
+
+      &--close {
+        display: none;
+      }
+    }
+  }
+}

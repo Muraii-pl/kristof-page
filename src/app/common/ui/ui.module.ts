@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimaryButtonComponent } from './primary-button/primary-button.component';
 import { LoaderComponent } from './loader/loader.component';
 import { BaseModalComponent } from './base-modal/base-modal.component';
+import { DropdownComponent } from './dropdown/dropdown.component';
 
 
 
@@ -14,6 +15,7 @@ import { BaseModalComponent } from './base-modal/base-modal.component';
     PrimaryButtonComponent,
     LoaderComponent,
     BaseModalComponent,
+    DropdownComponent,
 
   ],
   imports: [
@@ -25,7 +27,8 @@ import { BaseModalComponent } from './base-modal/base-modal.component';
     FormInputComponent,
     PrimaryButtonComponent,
     LoaderComponent,
-    BaseModalComponent
+    BaseModalComponent,
+    DropdownComponent
   ]
 })
 export class UiModule { }

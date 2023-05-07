@@ -36,6 +36,8 @@ export class OrderPageComponent extends GenericBasePage<IOrder> implements OnIni
     }
   ]
 
+  public readonly newOrderModalName: string = 'newOrderModal';
+
   constructor(
     protected override readonly cdr: ChangeDetectorRef,
     protected override readonly pageService: OrdersService,
@@ -50,7 +52,7 @@ export class OrderPageComponent extends GenericBasePage<IOrder> implements OnIni
 
   public test(): void {
     console.log('test')
-    this._modalService.open('confirmationDialog')
+    this._modalService.open(this.newOrderModalName)
   }
 
 }

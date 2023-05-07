@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, forwardRef, Input, ViewEncapsulation } from '@angular/core';
-import { ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, OnInit, ChangeDetectionStrategy, forwardRef, Input } from '@angular/core';
+import { ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-form-input[title][type]',

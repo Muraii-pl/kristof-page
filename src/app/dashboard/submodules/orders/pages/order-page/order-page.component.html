@@ -2,16 +2,6 @@
   [tableHeader]="tableHeader"
   [tableData]="tableData"
 >
-
-  <ng-container slot="delete-modal">
-    <div>delete</div>
-  </ng-container>
-  <ng-container slot="new-modal">
-    <div>new</div>
-  </ng-container>
-  <ng-container slot="edit-modal">
-    <div>edit</div>
-  </ng-container>
 </app-table>
 
 <button (click)="test()"> test open modal</button>
@@ -20,3 +10,9 @@
   [title]="''"
   [name]="'confirmationDialog'"
 ></app-confirmation-modal>
+<app-new-order-modal
+  [title]="'Dodaj nowe zamówienie'"
+  [name]="newOrderModalName"
+>
+
+</app-new-order-modal>

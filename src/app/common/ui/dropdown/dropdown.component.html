@@ -1,0 +1,22 @@
+<div class="dropdown">
+  <div (click)="toggle()" class="dropdown__value">
+    <span *ngIf="selectedOption; else placeholder" class="dropdown__value_text">
+      {{ selectedOption[internalConfig.label] }}
+    </span>
+    <i class="pr pr-angle" [ngClass]="(isOpen$ | async) ? 'pr-angle--open' : 'pr-angle--close'"></i>
+  </div>
+  <div
+    class="dropdown__list_wrapper"
+    [ngClass]=" (isOpen$ | async) ? 'dropdown__list_wrapper--open' : 'dropdown__list_wrapper--close'">
+    <ul class="dropdown__list">
+      <li *ngFor="let option of options" (click)="select(option)" class="dropdown__list_item">
+        <span>{{ option[internalConfig.label] }}</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<ng-template #placeholder>
+  <span class="dropdown__value_text">Wybierz wartość</span>
+</ng-template>

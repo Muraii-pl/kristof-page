@@ -1,0 +1,24 @@
+<app-base-modal
+ [title]="title"
+ [modalName]="name"
+ (isOpen)="open($event)"
+>
+  <div class="modal">
+    <form [formGroup]="orderForm">
+      <div>
+        <div>
+          <input formControlName="id">
+        </div>
+        <div>
+          <app-dropdown
+            [options]="devicesList"
+            [formControlName]="'deviceId'"
+            [config]="{ label: 'model' }"
+          >
+          </app-dropdown>
+        </div>
+      </div>
+      <button (click)="test()">test </button>
+    </form>
+  </div>
+</app-base-modal>

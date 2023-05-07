@@ -1,4 +1,13 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, Input, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Input,
+  OnDestroy,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import { ModalService } from '../../core/services/ModalService';
 import { BehaviorSubject, Subscription } from 'rxjs';
 
@@ -18,6 +27,8 @@ export class BaseModalComponent implements OnInit, OnDestroy {
     }
   }
 
+  @Output() isOpen: EventEmitter<boolean> = new EventEmitter<boolean>()
+
   public subs: Subscription[] = [];
   public isOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
 
@@ -29,6 +40,9 @@ export class BaseModalComponent implements OnInit, OnDestroy {
   ) { }
 
   public ngOnInit(): void {
+    this.subs.push(this.isOpen$.subscribe((res) => {
+      this.isOpen.emit(res)
+    }))
   }
 
   public get modalName(): string {
@@ -36,10 +50,12 @@ export class BaseModalComponent implements OnInit, OnDestroy {
   }
 
   public close(): void {
-    this._modalService.close();
+    this._modalService.close(this.modalName);
   }
 
   public ngOnDestroy(): void {
+    this._modalService.destroyModal(this.modalName)
+
     for (let i: number = 0; i < this.subs.length; i++) {
       this.subs[i].unsubscribe();
     }

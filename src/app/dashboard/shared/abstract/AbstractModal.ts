@@ -33,6 +33,7 @@ export abstract class AbstractModal implements OnInit, OnDestroy {
   }
 
   abstract save(): void
+
   public ngOnDestroy(): void {
     for (let i: number = 0; i < this.subs.length ; i++) {
       this.subs[i].unsubscribe();
