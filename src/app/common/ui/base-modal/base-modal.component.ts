@@ -28,6 +28,7 @@ export class BaseModalComponent implements OnInit, OnDestroy {
   }
 
   @Output() isOpen: EventEmitter<boolean> = new EventEmitter<boolean>()
+  @Output() closeModal: EventEmitter<void> = new EventEmitter<void>();
 
   public subs: Subscription[] = [];
   public isOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
@@ -50,7 +51,7 @@ export class BaseModalComponent implements OnInit, OnDestroy {
   }
 
   public close(): void {
-    this._modalService.close(this.modalName);
+    this.closeModal.emit();
   }
 
   public ngOnDestroy(): void {

@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@
 import { GenericBasePage } from '../../../../pages/generic-base-page/generic-base-page';
 import { INameId, ITableHeader } from '../../../../core/interfaces';
 import { ProducersService } from '../../../../core/services';
+import { ModalService } from '../../../../../common/core/services/ModalService';
 
 @Component({
   selector: 'app-producers-page',
@@ -19,11 +20,12 @@ export class ProducersPageComponent extends GenericBasePage<INameId> implements 
   ]
 
   constructor(
-    protected override cdr: ChangeDetectorRef,
-    protected override pageService: ProducersService
+    protected override readonly cdr: ChangeDetectorRef,
+    protected override readonly pageService: ProducersService,
+    protected override readonly modalService: ModalService
   ) {
-    super(cdr, pageService);
-  }
+    super(cdr, pageService, modalService)
+  }readonly
   public override ngOnInit(): void {
     super.ngOnInit();
   }

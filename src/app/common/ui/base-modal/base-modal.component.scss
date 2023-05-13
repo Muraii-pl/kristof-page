@@ -22,14 +22,19 @@ $borderRadius: 4px;
 
   &__header {
     width: 100%;
-    height: 32px;
-    padding: 4px;
+    min-height: 32px;
+    padding: 8px;
     display: flex;
+    font-size: 20px;
     justify-content: space-between;
     align-items: center;
+    background-color: $baseColor;
+    border-radius: $borderRadius $borderRadius 0 0;
 
     &__button {
       cursor: pointer;
+      font-size: inherit;
+      color: inherit;
     }
   }
 }

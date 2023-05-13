@@ -3,7 +3,7 @@ import { ITableHeader, IOrder } from '../../../../core/interfaces/';
 import { GenericBasePage } from '../../../../pages/generic-base-page/generic-base-page';
 import { OrdersService } from '../../../../core/services/';
 import { ModalService } from '../../../../../common/core/services/ModalService';
-import { StaticDependenciesService } from '../../../../../common/core/services/StaticDependenciesService';
+
 
 @Component({
   selector: 'app-order-page',
@@ -36,23 +36,20 @@ export class OrderPageComponent extends GenericBasePage<IOrder> implements OnIni
     }
   ]
 
-  public readonly newOrderModalName: string = 'newOrderModal';
+  public override readonly newModalName: string = 'newOrderModal';
+  public override readonly editModalName: string = 'editOrderModal';
+  public override readonly confirmModalName: string = 'deleteOrderModal';
 
   constructor(
     protected override readonly cdr: ChangeDetectorRef,
     protected override readonly pageService: OrdersService,
-    private readonly _modalService: ModalService
+    protected override readonly modalService: ModalService
   ) {
-    super(cdr, pageService)
+    super(cdr, pageService, modalService)
   }
 
   public override ngOnInit(): void {
     super.ngOnInit();
-  }
-
-  public test(): void {
-    console.log('test')
-    this._modalService.open(this.newOrderModalName)
   }
 
 }

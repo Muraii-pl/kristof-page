@@ -12,7 +12,6 @@ export class ModalService {
 
   public generateModal(modal: BaseModalComponent): void {
     this._modals.push(modal)
-    console.log(this._modals)
   }
 
   public destroyModal(modalName: string) {

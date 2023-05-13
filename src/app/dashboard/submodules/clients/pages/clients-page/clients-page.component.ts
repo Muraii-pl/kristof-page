@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@
 import { GenericBasePage } from '../../../../pages/generic-base-page/generic-base-page';
 import { ITableHeader, IClient } from '../../../../core/interfaces/';
 import { ClientsService } from '../../../../core/services/';
+import { ModalService } from '../../../../../common/core/services/ModalService';
 
 
 @Component({
@@ -36,10 +37,11 @@ export class ClientsPageComponent extends GenericBasePage<IClient> implements On
   ]
 
   constructor(
-    protected override cdr: ChangeDetectorRef,
-    protected override pageService: ClientsService
+    protected override readonly cdr: ChangeDetectorRef,
+    protected override readonly pageService: ClientsService,
+    protected override readonly modalService: ModalService
   ) {
-    super(cdr, pageService);
+    super(cdr, pageService, modalService)
   }
 
   public override ngOnInit(): void {

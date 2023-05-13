@@ -1,13 +1,16 @@
 @import "src/app/common/core/styles/common";
+
 .page {
   &_dashboard {
     display: flex;
     flex-flow: row wrap;
   }
+
   &__content {
     padding: 16px 16px 0 0;
     display: flex;
   }
+
   &__header {
     background: $baseColorWhite50;
     height: 48px;
@@ -17,9 +20,25 @@
     align-items: center;
     justify-content: space-between;
 
-    &_title{
+    &_title {
       font-weight: 600;
       font-size: 32px;
     }
   }
+
+  ::ng-deep {
+    .form {
+      &__array {
+        display: flex;
+        justify-content: space-evenly;
+      }
+      &__input_label {
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 4px;
+      }
+    }
+  }
 }
+
+

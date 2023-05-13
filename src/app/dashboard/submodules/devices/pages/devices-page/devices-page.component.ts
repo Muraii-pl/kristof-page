@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@
 import { GenericBasePage } from '../../../../pages/generic-base-page/generic-base-page';
 import { INameId, ITableHeader } from '../../../../core/interfaces/';
 import { DevicesService } from '../../../../core/services';
+import { ModalService } from '../../../../../common/core/services/ModalService';
 
 @Component({
   selector: 'app-devices-page',
@@ -19,10 +20,11 @@ export class DevicesPageComponent extends GenericBasePage<INameId> implements On
   ]
 
   constructor(
-    protected override cdr: ChangeDetectorRef,
-    protected override pageService: DevicesService
+    protected override readonly cdr: ChangeDetectorRef,
+    protected override pageService: DevicesService,
+    protected override readonly modalService: ModalService
   ) {
-    super(cdr, pageService);
+    super(cdr, pageService, modalService)
   }
 
   public override ngOnInit(): void {

@@ -55,7 +55,6 @@ export class ToPDFService {
   }
 
   private getTableHeaders(tableHeaderObject: ITableHeader[]): string[] {
-    console.log(tableHeaderObject)
     return tableHeaderObject.map(header => header.name);
   }
 

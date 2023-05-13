@@ -1,18 +1,23 @@
 <app-table
   [tableHeader]="tableHeader"
   [tableData]="tableData"
+  (tableAction)="openModal($event)"
 >
 </app-table>
 
-<button (click)="test()"> test open modal</button>
-
 <app-confirmation-modal
   [title]="''"
-  [name]="'confirmationDialog'"
+  [name]="confirmModalName"
+  [mainText]="'Czy napewno chcesz usunć to zamówienie?'"
 ></app-confirmation-modal>
 <app-new-order-modal
   [title]="'Dodaj nowe zamówienie'"
-  [name]="newOrderModalName"
+  [name]="newModalName"
 >
-
 </app-new-order-modal>
+<app-edit-order-modal
+  [title]="'Edytuj zamówienie'"
+  [name]="editModalName"
+  [orderId]="itemId"
+>
+</app-edit-order-modal>

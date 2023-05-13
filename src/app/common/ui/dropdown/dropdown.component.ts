@@ -38,7 +38,6 @@ export class DropdownComponent<T> implements OnInit, ControlValueAccessor {
 
   public ngOnInit(): void {
     if(this.config) {
-      console.log(this.config)
       for(const key of Object.keys(this.config)) {
         this.internalConfig[key] = this.config[key]
       }

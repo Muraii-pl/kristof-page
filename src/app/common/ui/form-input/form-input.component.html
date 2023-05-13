@@ -1,6 +1,6 @@
 <ng-container [formGroup]="fGroup">
   <div class="form-group label-position-{{ lPosition }}">
     <label class="form-group__label">{{ title }}</label>
-    <input [type]="type" [formControlName]="fControlName" class="form-group__input">
+    <input [type]="type" [formControlName]="fControlName" class="form-group__input" [disabled]="isDisable">
   </div>
 </ng-container>

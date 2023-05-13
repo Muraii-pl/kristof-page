@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Directive, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { BehaviorSubject, Subscription } from 'rxjs';
+import { ModalService } from '../../../common/core/services/ModalService';
 
 @Directive()
 export abstract class AbstractModal implements OnInit, OnDestroy {
@@ -20,6 +21,7 @@ export abstract class AbstractModal implements OnInit, OnDestroy {
 
   protected constructor(
     protected readonly cdr: ChangeDetectorRef,
+    protected readonly modalService: ModalService
   ) {}
   public ngOnInit(): void {
   }
@@ -32,7 +34,8 @@ export abstract class AbstractModal implements OnInit, OnDestroy {
     return this._title;
   }
 
-  abstract save(): void
+  abstract close(): void;
+  abstract save(): void;
 
   public ngOnDestroy(): void {
     for (let i: number = 0; i < this.subs.length ; i++) {

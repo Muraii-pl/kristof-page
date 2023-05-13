@@ -3,6 +3,7 @@ import { NewOrderModalComponent } from '../new-order-modal/new-order-modal.compo
 import { FormBuilder } from '@angular/forms';
 import { ClientsService, DevicesService, OrdersService, ProducersService } from '../../../../core/services';
 import { IOrder } from '../../../../core/interfaces';
+import { ModalService } from '../../../../../common/core/services/ModalService';
 
 @Component({
   selector: 'app-edit-order-modal',
@@ -16,15 +17,18 @@ export class EditOrderModalComponent extends NewOrderModalComponent {
     this.loadData(orderId)
   }
 
+  public override readonly isEditModal: boolean = true;
+  public override readonly editConfirmModalName: string = 'editConfirmModalName';
+
   constructor(
-    protected override readonly fb: FormBuilder,
     protected override readonly orderService: OrdersService,
     protected override readonly clientsService: ClientsService,
     protected override readonly devicesService: DevicesService,
     protected override readonly producersService: ProducersService,
     protected override readonly cdr: ChangeDetectorRef,
+    protected override readonly modalService: ModalService
   ) {
-    super(fb, orderService, clientsService, devicesService, producersService, cdr);
+    super(orderService, clientsService, devicesService, producersService, cdr, modalService);
   }
 
   private loadData(orderId: number): void {

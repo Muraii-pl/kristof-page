@@ -23,6 +23,7 @@ export class FormInputComponent implements OnInit, ControlValueAccessor {
   @Input() fGroup: FormGroup;
 
   public value: string;
+  public isDisable: boolean;
 
   constructor() { }
 
@@ -38,6 +39,10 @@ export class FormInputComponent implements OnInit, ControlValueAccessor {
 
   public registerOnTouched(fn: any): void {
     this.onTouch = fn;
+  }
+
+   public setDisabledState(isDisabled: boolean) {
+    this.isDisable = isDisabled;
   }
 
   public writeValue(obj: any): void {

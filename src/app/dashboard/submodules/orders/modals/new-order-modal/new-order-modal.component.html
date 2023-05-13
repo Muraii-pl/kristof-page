@@ -1,15 +1,21 @@
 <app-base-modal
- [title]="title"
- [modalName]="name"
- (isOpen)="open($event)"
+  [title]="title"
+  [modalName]="name"
+  (isOpen)="open($event)"
+  (close)="close()"
 >
   <div class="modal">
-    <form [formGroup]="orderForm">
-      <div>
+    <form [formGroup]="orderForm" class="form">
+      <div class="form__array">
+        <app-form-input
+          [title]="'Numer zamówienia'"
+          [type]="'text'"
+          [fControlName]="'id'"
+          [fGroup]="orderForm"
+        >
+        </app-form-input>
         <div>
-          <input formControlName="id">
-        </div>
-        <div>
+          <label class="form__input_label">Urządzenie</label>
           <app-dropdown
             [options]="devicesList"
             [formControlName]="'deviceId'"
@@ -18,7 +24,34 @@
           </app-dropdown>
         </div>
       </div>
-      <button (click)="test()">test </button>
+      <div class="form__array">
+        <app-form-input
+          title="Model"
+          type="text"
+          fControlName="model"
+          [fGroup]="orderForm"
+        >
+        </app-form-input>
+        <app-form-input
+          title="opis"
+          type="text"
+          fControlName="description"
+          [fGroup]="orderForm"
+        >
+        </app-form-input>
+
+      </div>
+      <button (click)="test()">test</button>
     </form>
   </div>
 </app-base-modal>
+
+<app-confirmation-modal
+  *ngIf="isEditModal"
+  [name]="editConfirmModalName"
+  [title]="''"
+  [mainText]="'Twoje zmiany nie zostaly napisane. Czy napewno chcesz wyjść?'"
+  (close)="close()"
+>
+
+</app-confirmation-modal>

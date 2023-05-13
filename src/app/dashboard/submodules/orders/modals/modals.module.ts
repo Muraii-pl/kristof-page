@@ -4,13 +4,13 @@ import { NewOrderModalComponent } from './new-order-modal/new-order-modal.compon
 import { UiModule } from '../../../../common/ui/ui.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditOrderModalComponent } from './edit-order-modal/edit-order-modal.component';
+import { ModalsModule as GlobalModal } from '../../../modals/modals.module';
 
 
 
 
 @NgModule({
   declarations: [
-
     NewOrderModalComponent,
     EditOrderModalComponent
   ],
@@ -21,7 +21,8 @@ import { EditOrderModalComponent } from './edit-order-modal/edit-order-modal.com
   imports: [
     CommonModule,
     UiModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    GlobalModal,
   ]
 })
 export class ModalsModule { }

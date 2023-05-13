@@ -98,7 +98,6 @@ export class OrdersService extends DashboardPagesService<IOrder>{
   }
 
   public override getAll(): Observable<IOrder[]> {
-    console.log('test')
     return of(this.fakeBack)
   }
 
