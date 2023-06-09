@@ -1,4 +1,24 @@
 <app-table
   [tableHeader]="tableHeader"
   [tableData]="tableData"
+  (tableAction)="openModal($event)"
 ></app-table>
+
+
+<app-confirmation-modal
+  [title]="''"
+  [name]="confirmModalName"
+  [mainText]="'Czy napewno chcesz usunć tego producenta?'"
+></app-confirmation-modal>
+<app-new-producer-modal
+  [title]="'Dodaj nowegeo producenta'"
+  [name]="newModalName"
+>
+</app-new-producer-modal>
+<app-edit-producer-modal
+  [title]="'Edytuj producenta'"
+  [name]="editModalName"
+  [producerId]="itemId"
+>
+</app-edit-producer-modal>
+

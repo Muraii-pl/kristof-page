@@ -1,14 +1,13 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  Component,
+  EventEmitter,
   Input,
-  Output,
-  EventEmitter
+  OnInit,
+  Output
 } from '@angular/core';
 import { AbstractModal } from '../../shared/abstract/AbstractModal';
-import { FormBuilder } from '@angular/forms';
 import { ConfirmModalActionEnum } from '../../../common/core/enums';
 import { ModalService } from '../../../common/core/services/ModalService';
 
@@ -23,8 +22,6 @@ export class ConfirmationModalComponent extends AbstractModal implements OnInit 
   @Input() mainText: string;
 
   @Output() actionResult: EventEmitter<ConfirmModalActionEnum> = new EventEmitter<ConfirmModalActionEnum>();
-
-  public modalAction: typeof ConfirmModalActionEnum = ConfirmModalActionEnum;
 
   private _itemId: number;
 
@@ -42,8 +39,12 @@ export class ConfirmationModalComponent extends AbstractModal implements OnInit 
     return this._itemId;
   }
 
-  public close(): void {
+  public close(closeOptions: ConfirmModalActionEnum): void {
+    console.log(closeOptions)
     this.modalService.close(this.name)
+    if(closeOptions === ConfirmModalActionEnum.DISCARD_CHANGES) {
+      this.actionResult.emit(closeOptions)
+    }
   }
   public save(): void {
   }

@@ -2,8 +2,6 @@
 
 .primary_button {
   width: 100%;
-  background: $baseColor;
-  color: $white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,14 +13,32 @@
     background: $baseColorDark20;
 
   }
-}
 
-.lg {
-  height: 48px;
-  font-size: 24px;
-}
+  &--lg {
+    height: 48px;
+    font-size: 24px;
+    border-radius: 8px;
+  }
 
-.sm {
-  height: 24px;
-  font-size: 18px;
+  &--sm {
+    height: 24px;
+    font-size: 18px;
+    border-radius: 4px;
+  }
+
+  &--primary {
+    background: $baseColor;
+    color: $white;
+  }
+
+  &--secondary {
+    background: $white;
+    color: $black;
+    border: 1px solid $baseColor;
+
+    &:hover {
+      background: darken($white, 10%);
+    }
+  }
+
 }

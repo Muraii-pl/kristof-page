@@ -1,0 +1,61 @@
+<app-base-modal
+  [title]="title"
+  [modalName]="name"
+  (closeModal)="close($event)"
+>
+  <div class="modal">
+    <form [formGroup]="clientForm" class="form">
+      <div class="form__array">
+        <app-form-input
+          [title]="'Imię'"
+          [type]="'text'"
+          [fControlName]="'firstName'"
+          [fGroup]="clientForm"
+        ></app-form-input>
+        <app-form-input
+          [title]="'Nazwisko'"
+          [type]="'text'"
+          [fControlName]="'lastName'"
+          [fGroup]="clientForm"
+        ></app-form-input>
+      </div>
+      <div class="form__array">
+        <app-form-input
+          [title]="'Email'"
+          [type]="'text'"
+          [fControlName]="'email'"
+          [fGroup]="clientForm"
+        ></app-form-input>
+        <app-form-input
+          [title]="'Nr. telefonu'"
+          [type]="'text'"
+          [fControlName]="'phoneNumber'"
+          [fGroup]="clientForm"
+        ></app-form-input>
+      </div>
+      <div class="form__array form__array--buttons">
+        <app-primary-button
+          [label]="'Anuluj'"
+          [size]="'sm'"
+          [theme]="'secondary'"
+          (click)="close(modalAction.DISCARD)"
+        ></app-primary-button>
+        <app-primary-button
+          [label]="'Dodaj'"
+          [size]="'sm'"
+          (click)="save()"
+        ></app-primary-button>
+      </div>
+    </form>
+  </div>
+</app-base-modal>
+
+<app-confirmation-modal
+  *ngIf="isEditModal"
+  [name]="editConfirmModalName"
+  [title]="''"
+  [mainText]="'Twoje zmiany nie zostaly napisane. Czy napewno chcesz wyjść?'"
+  (actionResult)="close($event)"
+>
+
+</app-confirmation-modal>

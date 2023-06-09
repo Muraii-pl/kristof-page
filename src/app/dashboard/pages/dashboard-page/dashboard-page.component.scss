@@ -31,6 +31,11 @@
       &__array {
         display: flex;
         justify-content: space-evenly;
+        &--buttons {
+          justify-content: flex-end;
+          gap: 16px;
+          margin-top: 24px;
+        }
       }
       &__input_label {
         font-size: 18px;

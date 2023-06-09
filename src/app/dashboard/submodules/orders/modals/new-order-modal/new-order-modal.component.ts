@@ -1,15 +1,16 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AbstractModal } from '../../../../shared/abstract/AbstractModal';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { IClient, INameId, IOrder } from '../../../../core/interfaces';
 import { ClientsService, DevicesService, OrdersService, ProducersService } from '../../../../core/services';
 import { Observable } from 'rxjs';
 import { ModalService } from '../../../../../common/core/services/ModalService';
+import { ConfirmModalActionEnum } from '../../../../../common/core/enums';
 
 @Component({
   selector: 'app-new-order-modal',
   templateUrl: './new-order-modal.component.html',
-  styleUrls: ['./new-order-modal.component.scss'],
+  styleUrls: [ './new-order-modal.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewOrderModalComponent extends AbstractModal implements OnInit {
@@ -19,14 +20,13 @@ export class NewOrderModalComponent extends AbstractModal implements OnInit {
     this.clientsService.getAll(),
     this.devicesService.getAll(),
     this.producersService.getAll()
-  ]
+  ];
   public clientsList: IClient[];
   public devicesList: IOrder[];
   public producersList: INameId[];
 
   public readonly isEditModal: boolean = false;
   public readonly editConfirmModalName: string;
-
 
 
   constructor(
@@ -47,13 +47,10 @@ export class NewOrderModalComponent extends AbstractModal implements OnInit {
       model: new FormControl(''),
       description: new FormControl(''),
       comment: new FormControl(''),
-      accepted: new FormControl(''),
-      finished: new FormControl(''),
-      status: new FormControl(''),
       manufactureId: new FormControl(''),
       clientId: new FormControl(''),
       price: new FormControl('')
-    })
+    });
   }
 
   public open(isOpen: boolean): void {
@@ -65,23 +62,37 @@ export class NewOrderModalComponent extends AbstractModal implements OnInit {
         //   this.devicesList = res[1] as INameId[];
         //   this.producersList = res[2] as INameId[];
         // })
-      )
+      );
     }
   }
 
-  public test(): void {
-    console.log(this.orderForm.value)
-  }
-
-  public close(): void {
-    if ('test') {
-
+  public close(closeOption: ConfirmModalActionEnum): void {
+    if (closeOption === ConfirmModalActionEnum.SAVE) {
+      this.save();
+    } else if (closeOption === ConfirmModalActionEnum.CANCEL) {
+      this.modalService.close(this.name);
+    } else if (closeOption === ConfirmModalActionEnum.DISCARD_CHANGES) {
+      this.orderForm.reset();
+      this.modalService.close(this.name);
     } else {
-      this.modalService.close(this.name)
+      if (this.isEditModal) {
+        if (this.orderForm.dirty) {
+          this.modalService.open(this.editConfirmModalName);
+        } else {
+          this.modalService.close(this.name);
+        }
+      } else {
+        this.modalService.close(this.name);
+      }
     }
   }
 
   public save(): void {
+    this.subs.push(this.orderService.post(this.orderForm.value).subscribe((res) => {
+      })
+    );
+    this.orderForm.reset();
+    this.close(ConfirmModalActionEnum.DISCARD);
   }
 
 }

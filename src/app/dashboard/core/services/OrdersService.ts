@@ -101,4 +101,8 @@ export class OrdersService extends DashboardPagesService<IOrder>{
     return of(this.fakeBack)
   }
 
+  public override getOne(id: number): Observable<IOrder> {
+    return of(this.fakeBack.find((item) => item.id === id) as IOrder)
+  }
+
 }

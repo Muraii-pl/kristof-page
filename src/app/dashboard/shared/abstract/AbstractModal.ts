@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Directive, Input, OnDestroy, OnInit } from '@angular
 import { FormBuilder } from '@angular/forms';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ModalService } from '../../../common/core/services/ModalService';
+import { ConfirmModalActionEnum } from '../../../common/core/enums';
 
 @Directive()
 export abstract class AbstractModal implements OnInit, OnDestroy {
@@ -15,6 +16,8 @@ export abstract class AbstractModal implements OnInit, OnDestroy {
   }
 
   public subs: Subscription[] = [];
+  public modalAction: typeof ConfirmModalActionEnum = ConfirmModalActionEnum;
+
 
   private _name: string;
   private _title: string;
@@ -34,7 +37,7 @@ export abstract class AbstractModal implements OnInit, OnDestroy {
     return this._title;
   }
 
-  abstract close(): void;
+  abstract close(closeOption: ConfirmModalActionEnum): void;
   abstract save(): void;
 
   public ngOnDestroy(): void {

@@ -1,4 +1,13 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, forwardRef, HostListener, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  Input,
+  forwardRef,
+  HostListener,
+  ElementRef,
+  ChangeDetectorRef
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IDropdownConfig } from '../../core/interfaces';
 import { BehaviorSubject } from 'rxjs';
@@ -6,7 +15,7 @@ import { BehaviorSubject } from 'rxjs';
 @Component({
   selector: 'app-dropdown',
   templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.scss'],
+  styleUrls: [ './dropdown.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
@@ -19,37 +28,54 @@ import { BehaviorSubject } from 'rxjs';
 export class DropdownComponent<T> implements OnInit, ControlValueAccessor {
 
   @Input() set options(options: T[]) {
-    this._options = options;
-  }
+    if (options) {
+      this._options = options;
 
-  @Input() config: Object
+      console.log(this.selectedOption);
 
-  public internalConfig: IDropdownConfig = {
-    id: 'id',
-    label: 'name'
-  }
-
-  public isOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
-
-  private _selectedOption: T;
-  private _options: T[];
-  private _isDisable: boolean = false;
-  constructor() { }
-
-  public ngOnInit(): void {
-    if(this.config) {
-      for(const key of Object.keys(this.config)) {
-        this.internalConfig[key] = this.config[key]
+      if (this.selectedOption && typeof this.selectedOption === 'number') {
+        this.selectedOption = this.options
+        .find((item) => item[this.internalConfig.id] === this.selectedOption) as T;
+        this._cdr.detectChanges();
       }
     }
   }
 
-  public onChange = (options: T): void => {};
-  public onTouch = (): void => {};
+  @Input() config: Object;
+
+  public internalConfig: IDropdownConfig = {
+    id: 'id',
+    label: 'name'
+  };
+
+  public isOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+  private _selectedOption: T;
+  private _options: T[];
+  private _isDisable: boolean = false;
+
+  constructor(
+    private readonly _cdr: ChangeDetectorRef
+  ) {
+  }
+
+  public ngOnInit(): void {
+    if (this.config) {
+      for (const key of Object.keys(this.config)) {
+        this.internalConfig[key] = this.config[key];
+      }
+    }
+  }
+
+  public onChange = (options: T): void => {
+  };
+  public onTouch = (): void => {
+  };
 
   public set selectedOption(selectedOption: T) {
     this._selectedOption = selectedOption;
   }
+
   public get selectedOption(): T {
     return this._selectedOption;
   }
@@ -63,18 +89,19 @@ export class DropdownComponent<T> implements OnInit, ControlValueAccessor {
   }
 
   public select(option: T): void {
-    this.isOpen$.next(false)
+    this.isOpen$.next(false);
     this.selectedOption = option;
-    this.onChange(option[this.internalConfig.id])
+    this.onChange(option[this.internalConfig.id]);
   }
 
   public toggle(): void {
-    this.isOpen$.next(!this.isOpen$.value)
+    this.isOpen$.next(!this.isOpen$.value);
   }
 
   public registerOnChange(fn: any): void {
     this.onChange = fn;
   }
+
   public registerOnTouched(fn: any): void {
     this.onTouch = fn;
   }

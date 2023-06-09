@@ -11,13 +11,13 @@
         [label]="'Tak'"
         [type]="'button'"
         [size]="'sm'"
-        (click)="actionResult.emit(modalAction.SAVE)"
+        (click)="close(modalAction.DISCARD_CHANGES)"
       ></app-primary-button>
       <app-primary-button
         [label]="'Nie'"
         [type]="'button'"
         [size]="'sm'"
-        (click)="actionResult.emit(modalAction.CANCEL)"
+        (click)="close(modalAction.CANCEL)"
       >
       </app-primary-button>
     </div>

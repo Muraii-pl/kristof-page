@@ -1,15 +1,16 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  Component,
+  EventEmitter,
   Input,
   OnDestroy,
-  Output,
-  EventEmitter
+  OnInit,
+  Output
 } from '@angular/core';
 import { ModalService } from '../../core/services/ModalService';
 import { BehaviorSubject, Subscription } from 'rxjs';
+import { ConfirmModalActionEnum } from '../../core/enums';
 
 @Component({
   selector: 'app-base-modal',
@@ -28,7 +29,7 @@ export class BaseModalComponent implements OnInit, OnDestroy {
   }
 
   @Output() isOpen: EventEmitter<boolean> = new EventEmitter<boolean>()
-  @Output() closeModal: EventEmitter<void> = new EventEmitter<void>();
+  @Output() closeModal: EventEmitter<ConfirmModalActionEnum> = new EventEmitter<ConfirmModalActionEnum>();
 
   public subs: Subscription[] = [];
   public isOpen$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
@@ -51,7 +52,7 @@ export class BaseModalComponent implements OnInit, OnDestroy {
   }
 
   public close(): void {
-    this.closeModal.emit();
+    this.closeModal.emit(ConfirmModalActionEnum.DISCARD);
   }
 
   public ngOnDestroy(): void {

@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
-import { UiModule } from '../../common/ui/ui.module';
+import { UiModule as CommonUiModule  } from '../../common/ui/ui.module';
+import { UiModule } from '../ui/ui.module';
 
 
 
@@ -14,6 +15,7 @@ import { UiModule } from '../../common/ui/ui.module';
   ],
   imports: [
     CommonModule,
+    CommonUiModule,
     UiModule
   ]
 })

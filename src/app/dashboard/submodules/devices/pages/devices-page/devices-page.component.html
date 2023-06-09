@@ -1,4 +1,23 @@
 <app-table
   [tableHeader]="tableHeader"
   [tableData]="tableData"
+  (tableAction)="openModal($event)"
 ></app-table>
+
+
+<app-confirmation-modal
+  [title]="''"
+  [name]="confirmModalName"
+  [mainText]="'Czy napewno chcesz usunoć to urządzenie?'"
+></app-confirmation-modal>
+<app-new-device-modal
+  [title]="'Dodaj nowe urządzenie'"
+  [name]="newModalName"
+>
+</app-new-device-modal>
+<app-edit-device-modal
+  [title]="'Edytuj urządzenie'"
+  [name]="editModalName"
+  [deviceId]="itemId"
+>
+</app-edit-device-modal>

@@ -1,0 +1,41 @@
+<app-base-modal
+  [title]="title"
+  [modalName]="name"
+  (closeModal)="close($event)"
+>
+  <div class="modal">
+    <form [formGroup]="producerForm" class="form">
+      <div class="form__array">
+        <app-form-input
+          [title]="'Nazwa Producenta'"
+          [type]="'text'"
+          [fControlName]="'name'"
+          [fGroup]="producerForm"
+        ></app-form-input>
+      </div>
+      <div class="form__array form__array--buttons">
+        <app-primary-button
+          [label]="'Anuluj'"
+          [size]="'sm'"
+          [theme]="'secondary'"
+          (click)="close(modalAction.DISCARD)"
+        ></app-primary-button>
+        <app-primary-button
+          [label]="'Dodaj'"
+          [size]="'sm'"
+          (click)="save()"
+        ></app-primary-button>
+      </div>
+    </form>
+  </div>
+</app-base-modal>
+
+<app-confirmation-modal
+  *ngIf="isEditModal"
+  [name]="editConfirmModalName"
+  [title]="''"
+  [mainText]="'Twoje zmiany nie zostaly napisane. Czy napewno chcesz wyjść?'"
+  (actionResult)="close($event)"
+>
+
+</app-confirmation-modal>

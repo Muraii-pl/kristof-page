@@ -9,8 +9,9 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
 export class PrimaryButtonComponent implements OnInit {
 
   @Input() label: string;
-  @Input() type: string;
+  @Input() type: 'button' | 'submit' = 'button' ;
   @Input() size: 'sm' | 'lg' = 'lg'
+  @Input() theme: 'primary' | 'secondary' = 'primary'
 
   constructor() { }
 

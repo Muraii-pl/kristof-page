@@ -36,6 +36,11 @@ export class ClientsPageComponent extends GenericBasePage<IClient> implements On
     },
   ]
 
+
+  public override readonly editModalName: string = 'editClientModal'
+  public override readonly newModalName: string = 'newClientModal'
+  public override readonly confirmModalName: string = 'confirmationModal'
+
   constructor(
     protected override readonly cdr: ChangeDetectorRef,
     protected override readonly pageService: ClientsService,

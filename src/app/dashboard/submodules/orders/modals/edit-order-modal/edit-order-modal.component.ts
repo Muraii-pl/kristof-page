@@ -8,13 +8,13 @@ import { ModalService } from '../../../../../common/core/services/ModalService';
 @Component({
   selector: 'app-edit-order-modal',
   templateUrl: '../new-order-modal/new-order-modal.component.html',
-  styleUrls: ['../new-order-modal/new-order-modal.component.scss'],
+  styleUrls: [ '../new-order-modal/new-order-modal.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditOrderModalComponent extends NewOrderModalComponent {
 
   @Input() set orderId(orderId: number) {
-    this.loadData(orderId)
+    if (orderId) this.loadData(orderId);
   }
 
   public override readonly isEditModal: boolean = true;

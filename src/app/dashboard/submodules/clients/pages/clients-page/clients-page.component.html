@@ -1,4 +1,23 @@
 <app-table
   [tableHeader]="tableHeader"
   [tableData]="tableData"
+  (tableAction)="openModal($event)"
 ></app-table>
+
+
+<app-confirmation-modal
+  [title]="''"
+  [name]="confirmModalName"
+  [mainText]="'Czy napewno chcesz usunć tego clienta?'"
+></app-confirmation-modal>
+<app-new-client-modal
+  [title]="'Dodaj nowego klienta'"
+  [name]="newModalName"
+>
+</app-new-client-modal>
+<app-edit-client-modal
+  [title]="'Edytuj klienta'"
+  [name]="editModalName"
+  [userId]="itemId"
+>
+</app-edit-client-modal>

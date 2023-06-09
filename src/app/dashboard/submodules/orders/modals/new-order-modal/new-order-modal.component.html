@@ -2,7 +2,7 @@
   [title]="title"
   [modalName]="name"
   (isOpen)="open($event)"
-  (close)="close()"
+  (closeModal)="close($event)"
 >
   <div class="modal">
     <form [formGroup]="orderForm" class="form">
@@ -19,7 +19,7 @@
           <app-dropdown
             [options]="devicesList"
             [formControlName]="'deviceId'"
-            [config]="{ label: 'model' }"
+            [config]="{ label: 'model', id: 'deviceId'}"
           >
           </app-dropdown>
         </div>
@@ -33,15 +33,56 @@
         >
         </app-form-input>
         <app-form-input
-          title="opis"
+          title="Kwota"
           type="text"
-          fControlName="description"
+          fControlName="price"
           [fGroup]="orderForm"
         >
         </app-form-input>
 
       </div>
-      <button (click)="test()">test</button>
+      <div class="form__array">
+        <div>
+          <label class="form__input_label">Firma</label>
+          <app-dropdown
+            [options]="producersList"
+            [formControlName]="'manufactureId'"
+            [config]="{ label: 'model' }"
+          >
+          </app-dropdown>
+        </div>
+        <div [style.width]="'240px'"></div>
+      </div>
+      <div class="form__array">
+        <app-text-area
+          title="Opis"
+          fControlName="description"
+          [fGroup]="orderForm"
+        >
+        </app-text-area>
+      </div>
+      <div class="form__array">
+        <app-text-area
+          title="Komentarz"
+          fControlName="comment"
+          [fGroup]="orderForm"
+        >
+        </app-text-area>
+      </div>
+
+      <div class="form__array form__array--buttons">
+        <app-primary-button
+          [label]="'Anuluj'"
+          [size]="'sm'"
+          [theme]="'secondary'"
+          (click)="close(modalAction.DISCARD)"
+        ></app-primary-button>
+        <app-primary-button
+          [label]="'Dodaj'"
+          [size]="'sm'"
+          (click)="save()"
+        ></app-primary-button>
+      </div>
     </form>
   </div>
 </app-base-modal>
@@ -51,7 +92,7 @@
   [name]="editConfirmModalName"
   [title]="''"
   [mainText]="'Twoje zmiany nie zostaly napisane. Czy napewno chcesz wyjść?'"
-  (close)="close()"
+  (actionResult)="close($event)"
 >
 
 </app-confirmation-modal>
