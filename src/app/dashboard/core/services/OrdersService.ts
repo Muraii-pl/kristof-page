@@ -97,12 +97,12 @@ export class OrdersService extends DashboardPagesService<IOrder>{
     super(apiService);
   }
 
-  public override getAll(): Observable<IOrder[]> {
-    return of(this.fakeBack)
-  }
-
-  public override getOne(id: number): Observable<IOrder> {
-    return of(this.fakeBack.find((item) => item.id === id) as IOrder)
-  }
+  // public override getAll(): Observable<IOrder[]> {
+  //   return of(this.fakeBack)
+  // }
+  //
+  // public override getOne(id: number): Observable<IOrder> {
+  //   return of(this.fakeBack.find((item) => item.id === id) as IOrder)
+  // }
 
 }
