@@ -27,7 +27,7 @@ export class NewDeviceModalComponent extends AbstractModal implements OnInit {
 
   public override ngOnInit(): void {
     this.deviceForm = new FormGroup({
-      id: new FormControl(''),
+      id: new FormControl(0),
       name: new FormControl('')
     })
   }
@@ -58,6 +58,7 @@ export class NewDeviceModalComponent extends AbstractModal implements OnInit {
     })
     this.deviceForm.reset()
     this.close(ConfirmModalActionEnum.DISCARD)
+    this.closeResult.emit(ConfirmModalActionEnum.SAVE)
   }
 
 }

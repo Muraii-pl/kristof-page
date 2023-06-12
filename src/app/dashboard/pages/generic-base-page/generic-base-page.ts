@@ -25,6 +25,11 @@ export class GenericBasePage<T> implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit(): void {
+    this.getItem();
+  }
+
+  public getItem(): void {
+    console.log('trst')
     this.subs.push(
       this.pageService.getAll().subscribe((res: T[]) => {
         this.tableData = res;

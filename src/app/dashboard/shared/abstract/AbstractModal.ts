@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Directive, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Directive, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ModalService } from '../../../common/core/services/ModalService';
@@ -14,6 +14,8 @@ export abstract class AbstractModal implements OnInit, OnDestroy {
   @Input() set title(title: string) {
     this._title = title;
   }
+
+  @Output() closeResult: EventEmitter<ConfirmModalActionEnum> = new EventEmitter<ConfirmModalActionEnum>();
 
   public subs: Subscription[] = [];
   public modalAction: typeof ConfirmModalActionEnum = ConfirmModalActionEnum;

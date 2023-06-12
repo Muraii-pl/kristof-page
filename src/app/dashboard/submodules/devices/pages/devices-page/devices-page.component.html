@@ -13,11 +13,13 @@
 <app-new-device-modal
   [title]="'Dodaj nowe urządzenie'"
   [name]="newModalName"
+  (closeResult)="getItem()"
 >
 </app-new-device-modal>
 <app-edit-device-modal
   [title]="'Edytuj urządzenie'"
   [name]="editModalName"
   [deviceId]="itemId"
+  (closeResult)="getItem()"
 >
 </app-edit-device-modal>

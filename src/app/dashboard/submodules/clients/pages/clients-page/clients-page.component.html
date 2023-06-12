@@ -13,11 +13,13 @@
 <app-new-client-modal
   [title]="'Dodaj nowego klienta'"
   [name]="newModalName"
+  (closeResult)="getItem()"
 >
 </app-new-client-modal>
 <app-edit-client-modal
   [title]="'Edytuj klienta'"
   [name]="editModalName"
   [userId]="itemId"
+  (closeResult)="getItem()"
 >
 </app-edit-client-modal>

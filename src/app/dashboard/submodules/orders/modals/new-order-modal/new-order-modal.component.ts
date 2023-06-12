@@ -3,7 +3,7 @@ import { AbstractModal } from '../../../../shared/abstract/AbstractModal';
 import { FormControl, FormGroup } from '@angular/forms';
 import { IClient, INameId, IOrder } from '../../../../core/interfaces';
 import { ClientsService, DevicesService, OrdersService, ProducersService } from '../../../../core/services';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { ModalService } from '../../../../../common/core/services/ModalService';
 import { ConfirmModalActionEnum } from '../../../../../common/core/enums';
 
@@ -22,7 +22,7 @@ export class NewOrderModalComponent extends AbstractModal implements OnInit {
     this.producersService.getAll()
   ];
   public clientsList: IClient[];
-  public devicesList: IOrder[];
+  public devicesList: INameId[];
   public producersList: INameId[];
 
   public readonly isEditModal: boolean = false;
@@ -56,12 +56,12 @@ export class NewOrderModalComponent extends AbstractModal implements OnInit {
   public open(isOpen: boolean): void {
     if (isOpen) {
       this.subs.push(
-        this.orderService.getAll().subscribe(res => this.devicesList = res)
-        // forkJoin(this.source).subscribe((res: (INameId[] | IClient[] | IOrder)[]) => {
-        //   this.clientsList = res[0] as IClient[];
-        //   this.devicesList = res[1] as INameId[];
-        //   this.producersList = res[2] as INameId[];
-        // })
+        forkJoin(this.source).subscribe((res: (INameId[]  | IOrder)[]) => {
+          this.clientsList = res[0] as IClient[];
+          this.devicesList = res[1] as INameId[];
+          this.producersList = res[2] as INameId[];
+          this.cdr.detectChanges();
+        })
       );
     }
   }
@@ -69,6 +69,7 @@ export class NewOrderModalComponent extends AbstractModal implements OnInit {
   public close(closeOption: ConfirmModalActionEnum): void {
     if (closeOption === ConfirmModalActionEnum.SAVE) {
       this.save();
+      this.closeResult.emit(ConfirmModalActionEnum.SAVE)
     } else if (closeOption === ConfirmModalActionEnum.CANCEL) {
       this.modalService.close(this.name);
     } else if (closeOption === ConfirmModalActionEnum.DISCARD_CHANGES) {
