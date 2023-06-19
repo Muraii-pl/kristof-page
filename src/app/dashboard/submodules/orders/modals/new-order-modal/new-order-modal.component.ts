@@ -10,7 +10,7 @@ import { ConfirmModalActionEnum } from '../../../../../common/core/enums';
 @Component({
   selector: 'app-new-order-modal',
   templateUrl: './new-order-modal.component.html',
-  styleUrls: [ './new-order-modal.component.scss' ],
+  styleUrls: ['./new-order-modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewOrderModalComponent extends AbstractModal implements OnInit {
@@ -56,7 +56,7 @@ export class NewOrderModalComponent extends AbstractModal implements OnInit {
   public open(isOpen: boolean): void {
     if (isOpen) {
       this.subs.push(
-        forkJoin(this.source).subscribe((res: (INameId[]  | IOrder)[]) => {
+        forkJoin(this.source).subscribe((res: (INameId[] | IOrder)[]) => {
           this.clientsList = res[0] as IClient[];
           this.devicesList = res[1] as INameId[];
           this.producersList = res[2] as INameId[];
@@ -69,7 +69,6 @@ export class NewOrderModalComponent extends AbstractModal implements OnInit {
   public close(closeOption: ConfirmModalActionEnum): void {
     if (closeOption === ConfirmModalActionEnum.SAVE) {
       this.save();
-      this.closeResult.emit(ConfirmModalActionEnum.SAVE)
     } else if (closeOption === ConfirmModalActionEnum.CANCEL) {
       this.modalService.close(this.name);
     } else if (closeOption === ConfirmModalActionEnum.DISCARD_CHANGES) {
@@ -94,6 +93,7 @@ export class NewOrderModalComponent extends AbstractModal implements OnInit {
     );
     this.orderForm.reset();
     this.close(ConfirmModalActionEnum.DISCARD);
+    this.closeResult.emit(ConfirmModalActionEnum.SAVE);
   }
 
 }

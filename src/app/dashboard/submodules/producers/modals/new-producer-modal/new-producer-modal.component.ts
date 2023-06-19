@@ -8,7 +8,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-new-producer-modal',
   templateUrl: './new-producer-modal.component.html',
-  styleUrls: [ './new-producer-modal.component.scss' ],
+  styleUrls: ['./new-producer-modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewProducerModalComponent extends AbstractModal implements OnInit {
@@ -17,10 +17,11 @@ export class NewProducerModalComponent extends AbstractModal implements OnInit {
 
   public readonly isEditModal: boolean = false;
   public readonly editConfirmModalName: string;
+
   constructor(
     protected readonly producersService: ProducersService,
-    protected override readonly  cdr: ChangeDetectorRef,
-    protected override readonly  modalService: ModalService
+    protected override readonly cdr: ChangeDetectorRef,
+    protected override readonly modalService: ModalService
   ) {
     super(cdr, modalService);
   }
@@ -29,7 +30,7 @@ export class NewProducerModalComponent extends AbstractModal implements OnInit {
     this.producerForm = new FormGroup({
       id: new FormControl(''),
       name: new FormControl('')
-    })
+    });
   }
 
   public override close(closeOption: ConfirmModalActionEnum): void {
@@ -50,14 +51,17 @@ export class NewProducerModalComponent extends AbstractModal implements OnInit {
       } else {
         this.modalService.close(this.name);
       }
-    }  }
-  public  override save(): void {
+    }
+  }
+
+  public override save(): void {
     this.producersService[this.isEditModal ? 'put' : 'post'](this.producerForm.value, this.producerForm.value.id)
     .subscribe((res) => {
 
-    })
-    this.producerForm.reset()
-    this.close(ConfirmModalActionEnum.DISCARD)
+    });
+    this.producerForm.reset();
+    this.close(ConfirmModalActionEnum.DISCARD);
+    this.closeResult.emit(ConfirmModalActionEnum.SAVE);
   }
 
 }
