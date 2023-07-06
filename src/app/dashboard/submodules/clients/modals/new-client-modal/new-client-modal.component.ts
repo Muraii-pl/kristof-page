@@ -67,7 +67,8 @@ export class NewClientModalComponent extends AbstractModal implements OnInit {
       })
     );
     this.clientForm.reset();
-    this.close(ConfirmModalActionEnum.DISCARD);
+    this.close(ConfirmModalActionEnum.DISCARD)
+    this.closeResult.emit(ConfirmModalActionEnum.SAVE)
   };
 
 }
